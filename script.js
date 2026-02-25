@@ -97,22 +97,33 @@ if (selectedBtn) {
 // Delete, Interview, Rejected Crad evet
 jobsContainer.addEventListener('click', function(event) {
     const clickedElement = event.target;
-   
     const card = clickedElement.closest('div[id^="card-"]');
- // console.log(card);
 
     if (!card) return;
 
-     // Interview Button
+    //status-badge 
+    const statusLabel = card.querySelector('.status-badge');
+
+    // Interview Button
     if (clickedElement.classList.contains('card-interview-btn')) {
         card.classList.add('status-interview');
         card.classList.remove('status-rejected');
+        
+        if (statusLabel) {
+            statusLabel.innerText = 'INTERVIEW';
+            statusLabel.className = "status-badge bg-emerald-50 text-emerald-600 text-[12px] font-bold px-3 py-1 rounded-md uppercase tracking-wider mb-4 inline-block";
+        }
     }
 
     // Rejected Button
     if (clickedElement.classList.contains('card-rejected-btn')) {
         card.classList.add('status-rejected');
         card.classList.remove('status-interview');
+        
+        if (statusLabel) {
+            statusLabel.innerText = 'REJECTED';
+            statusLabel.className = "status-badge bg-red-50 text-red-600 text-[12px] font-bold px-3 py-1 rounded-md uppercase tracking-wider mb-4 inline-block";
+        }
     }
 
     // Delete Button
